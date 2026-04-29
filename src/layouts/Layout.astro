@@ -4,9 +4,14 @@ import '../styles/global.css';
 interface Props {
 	title: string;
 	description?: string;
+	image?: string;
 }
 
-const { title, description = "Prism Packworld delivers sophisticated, custom-crafted premium packaging solutions including rigid boxes, corrugated boxes, mono cartons, paper tubes, paper bags, and tags." } = Astro.props;
+const { 
+	title, 
+	description = "Prism Packworld delivers sophisticated, custom-crafted premium packaging solutions including rigid boxes, corrugated boxes, mono cartons, paper tubes, paper bags, and tags.",
+	image = "/logo.png" 
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -16,23 +21,41 @@ const { title, description = "Prism Packworld delivers sophisticated, custom-cra
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={Astro.url.href} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url.href} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, Astro.url.origin)} />
 		
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={Astro.url.href} />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={new URL(image, Astro.url.origin)} />
 
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+		<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap">
+		<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+		
+		<!-- JSON-LD -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				"name": "Prism Packworld",
+				"url": "https://prismpackworld.com",
+				"logo": "https://prismpackworld.com/logo.png",
+				"description": "Sophisticated, custom-crafted premium packaging solutions."
+			}
+		</script>
 	</head>
 	<body class="min-h-screen flex flex-col">
 		<slot />

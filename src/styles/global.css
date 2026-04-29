@@ -8,8 +8,22 @@
   --color-foreground: oklch(0.2 0.02 70);
   --color-card: oklch(1.0 0 0);
   --color-card-foreground: oklch(0.2 0.02 70);
-  --color-popover: oklch(1.0 0 0);
-  --color-popover-foreground: oklch(0.2 0.02 70);
+  --color-muted: oklch(0.92 0.01 70);
+  --color-muted-foreground: oklch(0.45 0.02 70);
+  --color-accent: oklch(0.62 0.18 65);
+  --color-accent-foreground: oklch(0.98 0 0);
+  --color-border: oklch(0.88 0.01 70);
+
+  /* Dark Theme */
+  --color-dark-background: oklch(0.12 0.01 260);
+  --color-dark-foreground: oklch(0.92 0.01 260);
+  --color-dark-card: oklch(0.16 0.01 260);
+  --color-dark-card-foreground: oklch(0.92 0.01 260);
+  --color-dark-muted: oklch(0.22 0.02 260);
+  --color-dark-muted-foreground: oklch(0.65 0.02 260);
+  --color-dark-accent: oklch(0.7 0.14 65);
+  --color-dark-accent-foreground: oklch(0.12 0.01 260);
+  --color-dark-border: oklch(0.25 0.02 260);
 
   --color-primary: oklch(0.35 0.08 70);
   --color-primary-foreground: oklch(0.98 0 0);
@@ -17,16 +31,9 @@
   --color-secondary: oklch(0.5 0.04 70);
   --color-secondary-foreground: oklch(0.98 0 0);
 
-  --color-muted: oklch(0.92 0.01 70);
-  --color-muted-foreground: oklch(0.45 0.02 70);
-
-  --color-accent: oklch(0.62 0.18 65);
-  --color-accent-foreground: oklch(0.98 0 0);
-
   --color-destructive: oklch(0.55 0.22 25);
   --color-destructive-foreground: oklch(0.98 0 0);
 
-  --color-border: oklch(0.88 0.01 70);
   --color-input: oklch(0.95 0.01 70);
   --color-ring: oklch(0.62 0.18 65);
 
@@ -34,12 +41,38 @@
 }
 
 @layer base {
+  :root {
+    --background: var(--color-background);
+    --foreground: var(--color-foreground);
+    --card: var(--color-card);
+    --card-foreground: var(--color-card-foreground);
+    --muted: var(--color-muted);
+    --muted-foreground: var(--color-muted-foreground);
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-accent-foreground);
+    --border: var(--color-border);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: var(--color-dark-background);
+      --foreground: var(--color-dark-foreground);
+      --card: var(--color-dark-card);
+      --card-foreground: var(--color-dark-card-foreground);
+      --muted: var(--color-dark-muted);
+      --muted-foreground: var(--color-dark-muted-foreground);
+      --accent: var(--color-dark-accent);
+      --accent-foreground: var(--color-dark-accent-foreground);
+      --border: var(--color-dark-border);
+    }
+  }
+
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground font-body antialiased;
+    @apply bg-background text-foreground font-body antialiased transition-colors duration-300;
   }
 
   h1,
@@ -48,7 +81,11 @@
   h4,
   h5,
   h6 {
-    @apply font-display font-bold;
+    @apply font-display font-bold tracking-tight;
+  }
+
+  h1 {
+    @apply text-balance;
   }
 }
 
@@ -62,4 +99,19 @@
 
 .shadow-elevated {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }

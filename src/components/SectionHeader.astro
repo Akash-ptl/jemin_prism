@@ -1,0 +1,27 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  centered?: boolean;
+  className?: string;
+}
+
+const { eyebrow, title, description, centered = false, className = "" } = Astro.props;
+---
+
+<div class={`mb-14 ${centered ? 'text-center max-w-2xl mx-auto' : 'max-w-3xl'} ${className} animate-fade-in-up`}>
+  {eyebrow && (
+    <p class="font-display text-xs tracking-widest uppercase text-accent mb-3">
+      {eyebrow}
+    </p>
+  )}
+  <h2 class="font-display font-extrabold text-4xl md:text-5xl text-foreground tracking-tight">
+    {title}
+  </h2>
+  {description && (
+    <p class="mt-4 text-muted-foreground text-lg leading-relaxed">
+      {description}
+    </p>
+  )}
+</div>
