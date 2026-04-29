@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", serif;
+  --font-body: "DM Sans", sans-serif;
+
+  --color-background: oklch(0.98 0.01 70);
+  --color-foreground: oklch(0.2 0.02 70);
+  --color-card: oklch(1.0 0 0);
+  --color-card-foreground: oklch(0.2 0.02 70);
+  --color-popover: oklch(1.0 0 0);
+  --color-popover-foreground: oklch(0.2 0.02 70);
+
+  --color-primary: oklch(0.35 0.08 70);
+  --color-primary-foreground: oklch(0.98 0 0);
+
+  --color-secondary: oklch(0.5 0.04 70);
+  --color-secondary-foreground: oklch(0.98 0 0);
+
+  --color-muted: oklch(0.92 0.01 70);
+  --color-muted-foreground: oklch(0.45 0.02 70);
+
+  --color-accent: oklch(0.62 0.18 65);
+  --color-accent-foreground: oklch(0.98 0 0);
+
+  --color-destructive: oklch(0.55 0.22 25);
+  --color-destructive-foreground: oklch(0.98 0 0);
+
+  --color-border: oklch(0.88 0.01 70);
+  --color-input: oklch(0.95 0.01 70);
+  --color-ring: oklch(0.62 0.18 65);
+
+  --radius-xl: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-bold;
+  }
+}
+
+.transition-smooth {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.shadow-card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.shadow-elevated {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}

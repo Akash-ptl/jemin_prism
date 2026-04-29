@@ -1,0 +1,301 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { Image } from 'astro:assets';
+
+// Import images for optimization
+import rigidImg from '../../assets/images/product-rigid-box.dim_800x600.jpg';
+import corrugatedImg from '../../assets/images/product-corrugated-box.dim_800x600.jpg';
+import monoImg from '../../assets/images/product-mono-carton.dim_800x600.jpg';
+import tubeImg from '../../assets/images/product-paper-tube.dim_800x600.jpg';
+import bagImg from '../../assets/images/product-paper-bag.dim_800x600.jpg';
+import tagsImg from '../../assets/images/product-tags.dim_800x600.jpg';
+
+export function getStaticPaths() {
+  const allProducts = [
+    { 
+      id: 'rigid-box',
+      name: 'Rigid Boxes', 
+      category: 'rigid box',
+      tagline: 'Unbox the extraordinary',
+      description: 'Our rigid boxes combine structural precision with luxury presentation. Constructed from high-density greyboard and finished with premium paper wraps, they deliver an unboxing experience that reflects the quality of your product.',
+      image: rigidImg,
+      minOrder: '500 units',
+      leadTime: '18–22 working days',
+      specs: [
+        { label: 'Material', value: '2–3mm greyboard + art paper wrap' },
+        { label: 'Finish', value: 'Matte / Gloss / Soft-touch lamination' },
+        { label: 'Closure', value: 'Magnetic, ribbon pull, or lid-off' },
+        { label: 'Printing', value: 'CMYK offset + spot UV, foil stamping' },
+      ],
+      features: [
+        'Magnetic closure options',
+        'Custom EVA foam inserts',
+        'Gold & silver foil embossing',
+        'Soft-touch matte lamination',
+        'Full CMYK interior printing',
+      ],
+      industries: ['Luxury Goods', 'Electronics', 'Cosmetics', 'Jewellery']
+    },
+    { 
+      id: 'corrugated-box',
+      name: 'Corrugated Boxes', 
+      category: 'corrugated box',
+      tagline: 'Protection meets presentation',
+      description: 'Engineered for strength without compromising on aesthetics. Our corrugated solutions provide superior protection for transit while serving as a powerful canvas for your brand identity.',
+      image: corrugatedImg,
+      minOrder: '1000 units',
+      leadTime: '12–15 working days',
+      specs: [
+        { label: 'Flute Type', value: 'E, B, or C-Flute options' },
+        { label: 'Material', value: 'Kraft or White top liner' },
+        { label: 'Printing', value: 'Flexo or High-end Offset litho' },
+        { label: 'Sustainability', value: '100% Recyclable materials' },
+      ],
+      features: [
+        'Double-wall protection',
+        'Easy-fold assembly',
+        'Eco-friendly soy inks',
+        'Custom die-cut inserts',
+        'Water-resistant coatings',
+      ],
+      industries: ['E-Commerce', 'Subscription Boxes', 'Heavy Goods', 'Retail']
+    },
+    { 
+      id: 'mono-carton',
+      name: 'Mono Cartons', 
+      category: 'mono carton',
+      tagline: 'Clean lines, clear message',
+      description: 'Versatile folding cartons precision-engineered for product-shelf impact. Available in a wide range of board weights and finishes, our mono cartons deliver consistent print quality at scale — ideal for retail and pharmaceutical applications.',
+      image: monoImg,
+      minOrder: '2000 units',
+      leadTime: '12–16 working days',
+      specs: [
+        { label: 'Material', value: 'SBS, FBB, or Duplex board' },
+        { label: 'Weight', value: '250–450 gsm' },
+        { label: 'Printing', value: 'Offset 4-colour process' },
+        { label: 'Finish', value: 'Lamination, varnish, or aqueous coating' },
+      ],
+      features: [
+        'Reverse tuck, straight tuck, auto-bottom',
+        'Spot UV and embossing',
+        'Child-resistant closures available',
+        'Perforations and window cutouts',
+        'Serialisation and barcoding',
+      ],
+      industries: ['Pharmaceuticals', 'Cosmetics', 'Food & Beverage', 'Retail']
+    },
+    { 
+      id: 'paper-tube',
+      name: 'Paper Tubes', 
+      category: 'paper tube',
+      tagline: 'Round is the new premium',
+      description: 'Handsome cylindrical packaging that commands shelf presence. Our paper tubes are wound from premium kraft or coated paper with precision-fit lids — perfect for candles, teas, spirits, and cosmetic collections that demand a tactile premium feel.',
+      image: tubeImg,
+      minOrder: '300 units',
+      leadTime: '16–20 working days',
+      specs: [
+        { label: 'Material', value: 'Spiral-wound kraft or coated paper' },
+        { label: 'Diameter', value: '25mm – 150mm custom' },
+        { label: 'Length', value: 'Fully customisable' },
+        { label: 'Closure', value: 'Friction-fit or telescopic lid' },
+      ],
+      features: [
+        '360° full-wrap printing',
+        'Embossed and debossed labels',
+        'Metal or kraft end caps',
+        'Food-safe interior lining',
+        'Sustainable FSC-certified materials',
+      ],
+      industries: ['Luxury Goods', 'Food & Beverage', 'Cosmetics', 'Gifts']
+    },
+    { 
+      id: 'paper-bag',
+      name: 'Paper Bags', 
+      category: 'paper bag',
+      tagline: 'Carry your brand further',
+      description: 'Premium retail bags that serve as walking advertisements for your brand. From minimalist kraft designs to high-gloss laminated finishes with luxury handles, we craft bags that customers want to keep and reuse.',
+      image: bagImg,
+      minOrder: '1000 units',
+      leadTime: '12–15 working days',
+      specs: [
+        { label: 'Material', value: 'Art paper, Kraft, or Specialty paper' },
+        { label: 'Weight', value: '120–250 gsm' },
+        { label: 'Handles', value: 'Cotton rope, Ribbon, or Die-cut' },
+        { label: 'Finish', value: 'Matte/Gloss lamination, UV coating' },
+      ],
+      features: [
+        'Reinforced top and base',
+        'Custom pantone matching',
+        'Eco-friendly water-based inks',
+        'Hidden magnetic closures available',
+        'Range of luxury handle materials',
+      ],
+      industries: ['Fashion Retail', 'Cosmetics', 'Events', 'Gifts']
+    },
+    { 
+      id: 'tags',
+      name: 'Tags & Labels', 
+      category: 'tags',
+      tagline: 'The detail that defines your brand',
+      description: 'Small details that make a significant impact. Our custom tags and labels are the final touch of sophistication for your product, offering high-precision printing and specialty finishes on a variety of premium stocks.',
+      image: tagsImg,
+      minOrder: '5000 units',
+      leadTime: '7–10 working days',
+      specs: [
+        { label: 'Material', value: 'Coated board, Kraft, or Texture paper' },
+        { label: 'Thickness', value: '250–700 gsm' },
+        { label: 'Attachment', value: 'Strings, seals, or adhesive' },
+        { label: 'Specialty', value: 'Die-cutting to any shape' },
+      ],
+      features: [
+        'Gold, silver, and copper foiling',
+        { text: 'Deep letterpress embossing' }, // Note: nested object for some variety/testing if needed
+        'Variable data and QR codes',
+        'Wide range of stringing options',
+        'Custom blade-cut shapes',
+      ],
+      industries: ['Apparel', 'Artisanal Goods', 'Packaging Seals', 'Bottling']
+    },
+  ];
+
+  return allProducts.map(p => {
+    // Get related products (excluding current one, pick first 3)
+    const related = allProducts.filter(rp => rp.id !== p.id).slice(0, 3);
+    
+    return {
+      params: { id: p.id },
+      props: {
+        ...p,
+        related
+      }
+    }
+  });
+}
+
+const { name, category, tagline, description, image, minOrder, leadTime, specs, features, industries, related } = Astro.props;
+---
+
+<Layout title={`${name} — Prism Packworld`}>
+  <Header />
+  
+  <main class="flex-1 pt-16">
+    <div class="bg-card border-b border-border">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center gap-2 text-sm text-muted-foreground">
+        <a href="/" class="hover:text-foreground transition-colors">Home</a>
+        <span>/</span>
+        <a href="/#products" class="hover:text-foreground transition-colors">Products</a>
+        <span>/</span>
+        <span class="text-foreground font-medium">{name}</span>
+      </div>
+    </div>
+
+    <section class="bg-background py-16">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 grid md:grid-cols-2 gap-14 items-center">
+        <div class="relative aspect-[4/3] bg-muted/30 rounded-2xl overflow-hidden shadow-card">
+          <Image src={image} alt={name} class="w-full h-full object-cover" width={800} height={600} loading="eager" />
+        </div>
+        <div>
+          <span class="inline-flex items-center justify-center rounded-md border border-accent/40 text-accent font-display text-xs tracking-widest uppercase px-3 py-1 mb-4">
+            {category}
+          </span>
+          <h1 class="font-display font-extrabold text-4xl md:text-5xl text-foreground tracking-tight mb-3">{name}</h1>
+          <p class="text-accent font-display font-semibold text-lg mb-5">{tagline}</p>
+          <p class="text-muted-foreground leading-relaxed mb-8">{description}</p>
+          
+          <div class="flex items-center gap-6 mb-8 p-4 bg-muted/30 rounded-xl border border-border">
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"></path><path d="M12 22V12"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><path d="m7.5 4.27 9 5.15"></path></svg>
+              <div>
+                <p class="text-xs text-muted-foreground">Min. Order</p>
+                <p class="font-display font-semibold text-sm text-foreground">{minOrder}</p>
+              </div>
+            </div>
+            <div class="w-px h-8 bg-border"></div>
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <div>
+                <p class="text-xs text-muted-foreground">Lead Time</p>
+                <p class="font-display font-semibold text-sm text-foreground">{leadTime}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <a href="/contact" class="inline-flex items-center justify-center h-10 px-6 rounded-md bg-foreground text-background hover:bg-accent hover:text-foreground font-display font-semibold tracking-wide transition-smooth">
+              Request a Quote
+            </a>
+            <a href="/#products" class="inline-flex items-center justify-center h-10 px-6 rounded-md border border-border bg-background hover:bg-accent hover:text-accent-foreground font-display font-semibold transition-smooth">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+              All Products
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-muted/30 py-16">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 grid md:grid-cols-2 gap-12 border-b border-border pb-16">
+        <div>
+          <h2 class="font-display font-bold text-2xl text-foreground mb-6">Specifications</h2>
+          <div class="flex flex-col gap-3">
+            {specs.map((spec) => (
+              <div class="flex justify-between items-center py-3 border-b border-border last:border-0">
+                <span class="text-sm font-display font-medium text-muted-foreground">{spec.label}</span>
+                <span class="text-sm font-display font-semibold text-foreground text-right max-w-[55%]">{spec.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h2 class="font-display font-bold text-2xl text-foreground mb-6">Key Features</h2>
+          <ul class="flex flex-col gap-3">
+            {features.map((feature) => (
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M20 6 9 17l-5-5"></path></svg>
+                </span>
+                <span class="text-sm text-foreground">{typeof feature === 'string' ? feature : feature.text}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="mt-8">
+            <h3 class="font-display font-semibold text-sm tracking-widest uppercase text-muted-foreground mb-3">Industries Served</h3>
+            <div class="flex flex-wrap gap-2">
+              {industries.map((industry) => (
+                <span class="inline-flex items-center justify-center rounded-md border border-transparent bg-secondary text-secondary-foreground px-3 py-1 text-xs font-medium">
+                  {industry}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other Solutions Section -->
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-16">
+        <h2 class="font-display font-bold text-2xl text-foreground mb-8">Other Solutions</h2>
+        <div class="grid sm:grid-cols-3 gap-6">
+          {related.map((rp) => (
+            <a href={`/products/${rp.id}`} class="group block bg-card rounded-xl overflow-hidden border border-border hover:border-foreground/20 shadow-card hover:shadow-elevated transition-smooth">
+              <div class="aspect-[4/3] overflow-hidden bg-muted/30">
+                <Image src={rp.image} alt={rp.name} class="w-full h-full object-cover group-hover:scale-105 transition-smooth" width={600} height={450} />
+              </div>
+              <div class="p-5">
+                <p class="text-xs font-display tracking-widest uppercase text-accent mb-1">{rp.category}</p>
+                <h3 class="font-display font-bold text-base text-foreground group-hover:text-accent transition-colors">{rp.name}</h3>
+                <div class="mt-4 flex items-center gap-1 text-sm font-display font-semibold text-foreground group-hover:text-accent transition-colors">
+                  View Details
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>
