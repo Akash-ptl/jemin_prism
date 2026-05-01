@@ -1,5 +1,5 @@
-import rigidImg from '../assets/images/product-rigid-box.dim_800x600.jpg';
-import corrugatedImg from '../assets/images/product-corrugated-box.dim_800x600.jpg';
+import rigidImg from '../assets/images/product-rigid-box-new.jpg';
+import corrugatedImg from '../assets/images/product-corrugated-box-new.png';
 import monoImg from '../assets/images/product-mono-carton.dim_800x600.jpg';
 import tubeImg from '../assets/images/product-paper-tube.dim_800x600.jpg';
 import bagImg from '../assets/images/product-paper-bag.dim_800x600.jpg';
