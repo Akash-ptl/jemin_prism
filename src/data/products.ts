@@ -1,9 +1,9 @@
-import rigidImg from '../assets/images/product-rigid-box-new.jpg';
-import corrugatedImg from '../assets/images/product-corrugated-box-new.png';
-import monoImg from '../assets/images/product-mono-carton.dim_800x600.jpg';
-import tubeImg from '../assets/images/product-paper-tube.dim_800x600.jpg';
-import bagImg from '../assets/images/product-paper-bag.dim_800x600.jpg';
-import tagsImg from '../assets/images/product-tags.dim_800x600.jpg';
+import rigidImg from '../assets/images/product-rigid-box.png';
+import corrugatedImg from '../assets/images/product-corrugated-box.png';
+import monoImg from '../assets/images/product-mono-carton.jpg';
+import tubeImg from '../assets/images/product-paper-tube.jpg';
+import bagImg from '../assets/images/product-paper-bag.jpg';
+import tagsImg from '../assets/images/product-tags.jpg';
 
 export interface Product {
   id: string;
