@@ -27,10 +27,11 @@ const industries = [
           src={heroImg} 
           alt="Premium packaging collection" 
           class="w-full h-full object-cover object-center opacity-20" 
-          widths={[800, 1200, 1600]}
+          widths={[800, 1200, 1600, 2000]}
           sizes="100vw"
           loading="eager"
           fetchpriority="high"
+          quality={100}
         />
         <div class="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/30"></div>
       </div>
@@ -103,9 +104,10 @@ const industries = [
               src={heroImg} 
               alt="Premium packaging collection" 
               class="w-full h-full object-cover" 
-              widths={[600, 800]}
+              widths={[600, 800, 1200]}
               sizes="(max-width: 768px) 100vw, 50vw"
               loading="lazy"
+              quality={100}
             />
           </div>
           <div class="absolute -bottom-4 -left-4 bg-card border border-border rounded-xl px-6 py-4 shadow-elevated">

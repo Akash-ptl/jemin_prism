@@ -64,10 +64,11 @@ const { name, category, tagline, description, image, minOrder, leadTime, specs, 
             src={image} 
             alt={name} 
             class="w-full h-full object-cover" 
-            widths={[600, 800, 1200]} 
+            widths={[600, 800, 1200, 1600]} 
             sizes="(max-width: 768px) 100vw, 50vw"
             loading="eager" 
             fetchpriority="high"
+            quality={100}
           />
         </div>
         <div>
@@ -158,10 +159,11 @@ const { name, category, tagline, description, image, minOrder, leadTime, specs, 
                   src={rp.image} 
                   alt={rp.name} 
                   class="w-full h-full object-cover group-hover:scale-105 transition-smooth" 
-                  widths={[400, 600]} 
+                  widths={[400, 600, 800]} 
                   sizes="(max-width: 640px) 100vw, 33vw"
                   decoding="async" 
                   loading="lazy"
+                  quality={100}
                 />
               </div>
               <div class="p-5">
