@@ -65,6 +65,10 @@
       --accent-foreground: var(--color-dark-accent-foreground);
       --border: var(--color-dark-border);
     }
+
+    .dark\:invert {
+      filter: invert(1) brightness(2);
+    }
   }
 
   * {
