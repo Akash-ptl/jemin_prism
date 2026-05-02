@@ -3,8 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://Akash-ptl.github.io',
-  base: '/jemin_prism',
+  site: 'https://prismpackworld.com', // Replace with your actual domain later if different
   prefetch: true,
   vite: {
     plugins: [tailwindcss()]
